@@ -7,7 +7,7 @@ zuul:
   routes:
     admin-server:
       path: /admin/**
-      url: http://admin-microservice.herokuapp.com/
+      url: http://admin-microservice.herokuapp.com
 
     uaa-service:
       sensitiveHeaders:
@@ -15,7 +15,9 @@ zuul:
       url: http://authorizationserver.herokuapp.com
       stripPrefix: false
   add-proxy-headers: true
-
+  
+  ignoredHeaders:
+    authorization
 security:
   oauth2:
     client:
