@@ -1,0 +1,106 @@
+<div class="section" >
+	<form ng-submit="postVendorData()">
+		<div class="container" >
+            
+			<div class="row well" ng-show="result_success">
+				<div class=" col-sm-11">
+					<h2  id="outcome-created"></h2>
+				</div>
+				<div class=" col-sm-1">
+					<button type="reset" class="btn btn-md btn-danger" ng-click="hideMessage()">
+						<span><b>X</b></span>
+					</button>
+				</div>
+			</div>
+            
+			<div class="row well" ng-show="result_failure">
+				<div class="col-sm-11" >
+					<h2  id="outcome-notcreated"></h2>
+				</div>
+				<div class="col-sm-1" >
+					<button type="reset" class="btn btn-md btn-danger" ng-click="hideMessage()" >
+						<span><b>X</b></span>
+					</button>
+				</div>	
+			</div>	
+            
+		</div>
+		<div class="container">
+			<h1 class="well"><span ng-bind="headingTitle"></span></h1>
+			<div class="col-lg-12 well">
+				<div class="row">
+					
+					<div class="col-sm-12">
+					
+						<div class="row">
+							<div class="col-sm-12 form-group">
+								<label for="vendorName">Vendor Name</label> 
+								<input id="vendorName" type="text" placeholder="Enter Vendor Name" 
+								class="form-control" ng-model="vendorDetails.name" required>	
+							</div>
+						</div>
+						
+						<div class="row">
+							<div class="col-sm-12 form-group">
+								<label for="vendorEmail">Email Address</label> 
+								<input type="email" id="vendorEmail" type="email"
+									ng-init="vendorEmail=0" ng-focus="email=1" ng-blur="vendorEmail=0" 
+									placeholder="Enter Email Address" class="form-control"
+									ng-model="vendorDetails.email" required>
+								<small ng-show="email">*Enter email in this format "XYZ@ABC.com"</small>
+							</div>
+						</div>
+						
+						<div class="row">
+							<div class="col-sm-12 form-group">
+								<label for="vendorContact">Phone Number</label> 
+								<input type="text" id="contact" ng-init="vendorContact=0" 
+									ng-focus="vendorContact=1" ng-blur="vendorContact=0" 
+									placeholder="Enter Contact Number" class="form-control" 
+									maxlength="10" minlength="10" pattern="^[0-9]*$" 
+									ng-model="vendorDetails.contact" onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+									required>
+								<small ng-show="vendorContact">*Enter your 10-digit phone number</small>
+							</div>
+						</div>
+						
+						<div class="row">
+							<div class="col-sm-12 form-group">
+								<label for="vendorAddress">Address</label>
+								<textarea placeholder="Enter Address" rows="3" max-length="100"
+									id="vendorAddress" class="form-control"
+									ng-model="vendorDetails.address" required></textarea>
+							</div>
+						</div>
+						
+						<div class="row">
+							<div class="col-sm-8 form-group">
+								<label for="vendorLocation">Location</label>
+								<input type="text" id="vendorLocation" list="location-list" 
+									ng-init="vendorLocation=0" ng-focus="vendorLocation=1" 
+									ng-blur="vendorLocation=0" placeholder="Search Location"
+									class="form-control" ng-model="vendorDetails.location"
+									required>
+ 									<datalist id="location-list">
+ 										<option ng-repeat="x in locationInfo['message']|filter:location"> 
+ 											{{x.address+", "+x.code}}
+ 										</option>
+ 									</datalist> 
+								<small ng-show="vendorLocation">*Search your location by typing</small><br />
+								<small id="error"></small>
+							</div>
+						</div>
+						
+						<div class="row">
+							<div class="form-group col-sm-12">
+								<button type="submit" class="btn btn-lg btn-success" >Submit</button>
+								<button type="reset" class="btn btn-lg btn-warning">Reset</button>
+							</div>
+						</div>
+						
+					</div>		
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
